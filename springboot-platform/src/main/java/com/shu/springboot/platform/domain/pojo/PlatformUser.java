@@ -1,7 +1,10 @@
 package com.shu.springboot.platform.domain.pojo;
 
 import java.util.Date;
-
+/**
+ * @author shudongping
+ * @date 2018/03/21
+ */
 public class PlatformUser {
     private String id;
 

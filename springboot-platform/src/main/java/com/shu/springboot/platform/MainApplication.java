@@ -5,7 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Created by shudongping on 2018/3/21 0021.
+ * @author shudongping
+ * @date 2018/03/21
  */
 @SpringBootApplication
 @MapperScan("com.shu.springboot.platform.dao")

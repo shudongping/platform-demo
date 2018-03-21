@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by shudongping on 2018/3/21 0021.
+ * @author shudongping
+ * @date 2018/03/21
  */
 @Service
 public class UserServiceImpl implements IUserService {

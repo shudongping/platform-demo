@@ -4,7 +4,8 @@ import com.shu.springboot.platform.common.CodeMessage;
 import lombok.Data;
 
 /**
- * Created by shudongping on 2018/3/21 0021.
+ * @author shudongping
+ * @date 2018/03/21
  */
 @Data
 public class ServiceException extends RuntimeException{

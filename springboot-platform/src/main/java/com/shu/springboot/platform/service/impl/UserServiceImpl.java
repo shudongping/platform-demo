@@ -35,6 +35,7 @@ public class UserServiceImpl implements IUserService {
 
         PageInfo<PlatformUser> platformUserPageInfo = new PageInfo<PlatformUser>(list);
 
+
         return platformUserPageInfo;
 
 

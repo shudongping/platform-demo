@@ -1,9 +1,10 @@
 package com.shu.springboot.platform.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.shu.springboot.platform.common.Result;
 import com.shu.springboot.platform.domain.pojo.PlatformUser;
+import com.shu.springboot.platform.domain.vo.PageVo;
 import com.shu.springboot.platform.service.IUserService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +48,12 @@ public class UserController {
 
         return Result.success(res);
 
+    }
+
+
+    @GetMapping("/page")
+    public Result<PageInfo<PlatformUser>> getUserPage(PageVo pageVo){
+        return Result.success(userService.getPage(pageVo));
     }
 
 

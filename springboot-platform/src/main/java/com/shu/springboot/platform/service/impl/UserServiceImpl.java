@@ -10,6 +10,7 @@ import com.shu.springboot.platform.domain.vo.PageVo;
 import com.shu.springboot.platform.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class UserServiceImpl implements IUserService {
     private PlatformUserMapper userMapper;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveUser(PlatformUser user){
         userMapper.insert(user);
     }

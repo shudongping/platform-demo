@@ -7,9 +7,18 @@
     <groupId>com.shu</groupId>
     <artifactId>platform-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>concurrency-platform</module>
+        <module>springboot-platform</module>
+        <module>security-platform</module>
+    </modules>
 
 
-    <packaging>jar</packaging>
-
+    <packaging>pom</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </parent>
 
 </project>

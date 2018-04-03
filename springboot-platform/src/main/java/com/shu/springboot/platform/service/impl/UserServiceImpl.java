@@ -34,10 +34,10 @@ public class UserServiceImpl implements IUserService {
     public PageInfo<PlatformUser> getPage(PageVo pageVo){
 
         PageHelper.startPage(pageVo.getPageNum(),pageVo.getPageSize());
+
         List<PlatformUser>  list = userMapper.getPage();
 
         PageInfo<PlatformUser> platformUserPageInfo = new PageInfo<PlatformUser>(list);
-
 
         return platformUserPageInfo;
 

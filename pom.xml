@@ -11,6 +11,7 @@
         <module>concurrency-platform</module>
         <module>springboot-platform</module>
         <module>security-platform</module>
+        <module>da-platform</module>
     </modules>
 
 

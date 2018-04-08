@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>da-platform</artifactId>
+
+
     <properties>
         <commons-io.version>2.2</commons-io.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
@@ -20,8 +22,23 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-lang.version>2.6</commons-lang.version>
         <fastjson.version>1.2.0</fastjson.version>
+        <jug-lgpl.version>2.0.0</jug-lgpl.version>
     </properties>
-
+    <repositories>
+        <repository>
+            <id>pentaho-public</id>
+            <name>Pentaho Public</name>
+            <url>http://nexus.pentaho.org/content/groups/omni/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:15</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
 
     <dependencies>
@@ -215,6 +232,27 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>jug-lgpl</groupId>
+            <artifactId>jug-lgpl</artifactId>
+            <version>${jug-lgpl.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- 定时任务 -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
     </dependencies>
 
 </project>

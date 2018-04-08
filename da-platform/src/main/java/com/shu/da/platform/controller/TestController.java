@@ -2,16 +2,11 @@ package com.shu.da.platform.controller;
 
 import com.shu.da.platform.kettle.JobManager;
 import com.shu.da.platform.kettle.KettleUtils;
+import com.shu.da.platform.quartz.QuartzManager;
 import lombok.extern.slf4j.Slf4j;
-import org.pentaho.di.core.logging.KettleLogStore;
-import org.pentaho.di.core.logging.LoggingBuffer;
-import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author shudongping
@@ -22,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TestController {
 
+    @Autowired
+    private JobManager jobManager;
 
 
 
     /**
-     * 从数据库资源库获取job
+     * 从数据库资源库获取job  执行job
      *
      * @param jobId
      * @return
@@ -37,23 +34,33 @@ public class TestController {
 
         JobMeta jobMeta = KettleUtils.loadJob(jobId);
 
-        log.info(jobMeta.toString());
+        String status = jobManager.startJob(jobId);
 
-        Job job = new Job(KettleUtils.getInstanceRep(), jobMeta);
-
-//        Thread.sleep(1000*5);
-
-//        job.start();
-//        job.run();
-//        Thread.sleep(1000*5);
-//        String all_msg = KettleLogStore.getAppender().getBuffer().toString();
-//        String logChannelId = job.getLogChannelId();
-//        LoggingBuffer appender = KettleLogStore.getAppender();
-//        String logText = appender.getBuffer(logChannelId, true).toString();
-
-        String status = JobManager.startJob(job);
         return status;
     }
+
+    /**
+     * 停止job
+     * @param jobId
+     * @return
+     * @throws Exception
+     */
+    @PutMapping("/job/{jobId}")
+    public Object stopJob(@PathVariable("jobId") Long jobId) throws Exception{
+        return jobManager.stopJob(jobId);
+    }
+
+    /**
+     * 删除job
+     * @param jobId
+     * @return
+     * @throws Exception
+     */
+    @DeleteMapping("/job/{jobId}")
+    public Object removeJob(@PathVariable("jobId") Long jobId) throws Exception{
+        return jobManager.deleteJob(jobId);
+    }
+
 
     /**
      * 实时日志
@@ -62,22 +69,23 @@ public class TestController {
      */
     @GetMapping("/job/{jobId}/log")
     public Object getLog(@PathVariable("jobId") Long jobId) throws Exception{
-        JobMeta jobMeta = KettleUtils.loadJob(jobId);
-
-        Job job = new Job(KettleUtils.getInstanceRep(), jobMeta);
-        String all_msg = KettleLogStore.getAppender().getBuffer().toString();
-        log.info(all_msg);
-        String logChannelId = job.getLogChannelId();
-        LoggingBuffer appender = KettleLogStore.getAppender();
-        String logText = appender.getBuffer(logChannelId, true).toString();
-        log.info(logChannelId+":"+logText);
-        return all_msg;
+//        JobMeta jobMeta = KettleUtils.loadJob(jobId);
+//        Job job = new Job(KettleUtils.getInstanceRep(), jobMeta);
+//        String all_msg = KettleLogStore.getAppender().getBuffer().toString();
+//        log.info(all_msg);
+//        String logChannelId = job.getLogChannelId();
+//        LoggingBuffer appender = KettleLogStore.getAppender();
+//        String logText = appender.getBuffer(logChannelId, true).toString();
+//        log.info(logChannelId+":"+logText);
+        return jobManager.getJobLog(jobId);
     }
 
     @GetMapping("/log")
     public Object getTest() throws Exception{
         return "log success";
     }
+
+
 
 
 

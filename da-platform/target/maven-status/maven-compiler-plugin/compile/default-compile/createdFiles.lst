@@ -1,0 +1,5 @@
+com\shu\da\platform\controller\TestController.class
+com\shu\da\platform\kettle\KettleUtils.class
+com\shu\da\platform\MainApplication.class
+com\shu\da\platform\kettle\JobManager.class
+com\shu\da\platform\kettle\KettleInitializing.class

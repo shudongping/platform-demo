@@ -1,0 +1,12 @@
+com\shu\springboot\platform\common\Result.class
+com\shu\springboot\platform\service\IUserService.class
+com\shu\springboot\platform\config\RedisConfig.class
+com\shu\springboot\platform\service\impl\UserServiceImpl.class
+com\shu\springboot\platform\domain\vo\PageVo.class
+com\shu\springboot\platform\MainApplication.class
+com\shu\springboot\platform\controller\UserController.class
+com\shu\springboot\platform\common\CodeMessage.class
+com\shu\springboot\platform\exception\ExceptionHandler.class
+com\shu\springboot\platform\dao\PlatformUserMapper.class
+com\shu\springboot\platform\domain\pojo\PlatformUser.class
+com\shu\springboot\platform\exception\ServiceException.class

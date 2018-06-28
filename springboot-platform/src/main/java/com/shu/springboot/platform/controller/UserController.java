@@ -44,7 +44,7 @@ public class UserController {
     public Result<String> getRedis(){
 
         redisTemplate.opsForValue().set("key1","key1");
-
+        redisTemplate.opsForValue().set("key2","key2");
         String res = redisTemplate.opsForValue().get("key2").toString();
 
         return Result.success(res);
@@ -57,6 +57,12 @@ public class UserController {
         return Result.success(userService.getPage(pageVo));
     }
 
+
+
+    public static void main(String[] args){
+        String s = String.format("step:%s","123");
+        System.out.print(s);
+    }
 
 
 }

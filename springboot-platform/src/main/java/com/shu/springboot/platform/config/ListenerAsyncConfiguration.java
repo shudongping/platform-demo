@@ -24,6 +24,7 @@ public class ListenerAsyncConfiguration implements AsyncConfigurer {
         taskExecutor.setCorePoolSize(5);
         taskExecutor.setMaxPoolSize(10);
         taskExecutor.setQueueCapacity(25);
+        taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
         taskExecutor.initialize();
         return taskExecutor;
     }

@@ -57,6 +57,11 @@ public class UserController {
         return Result.success(userService.getPage(pageVo));
     }
 
+    @GetMapping("/event/user")
+    public Result<String> eventTest() throws Exception{
+        userService.sendUserEvent();
+        return Result.success("ok");
+    }
 
 
     public static void main(String[] args){

@@ -8,7 +8,7 @@
     <properties resource="dev/application.properties"></properties>
 
     <!--指定特定数据库的jdbc驱动jar包的位置-->
-    <classPathEntry location="D:\其他\sqlite-jdbc-3.7.2.jar"/>
+    <classPathEntry location="C:\project\platform-demo\mysql-connector-java-5.1.35.jar"/>
 
     <context id="default" targetRuntime="MyBatis3">
 
@@ -20,10 +20,10 @@
 
         <!--jdbc的数据库连接 -->
         <jdbcConnection
-                driverClass="org.sqlite.JDBC"
-                connectionURL="jdbc:sqlite:C:\project\ZGIS Server Web\WebRoot\db\zgisserver.db"
-                userId=""
-                password="">
+                driverClass="${spring.datasource.driver-class-name}"
+                connectionURL="${spring.datasource.url}"
+                userId="${spring.datasource.username}"
+                password="${spring.datasource.password}">
         </jdbcConnection>
 
 
@@ -38,11 +38,11 @@
             targetProject     指定在该项目下所在的路径
         -->
         <!--<javaModelGenerator targetPackage="com.mmall.pojo" targetProject=".\src\main\java">-->
-        <javaModelGenerator targetPackage="cn.zs.entity" targetProject="./src/main/java">
+        <javaModelGenerator targetPackage="com.smartcity.entity" targetProject="./src/main/java">
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对model添加 构造函数 -->
-            <property name="constructorBased" value="true"/>
+            <property name="constructorBased" value="false"/>
             <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
             <property name="trimStrings" value="true"/>
             <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
@@ -63,7 +63,7 @@
 
         <!-- targetPackage：mapper接口dao生成的位置 -->
         <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.mmall.dao" targetProject=".\src\main\java">-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.zs.dao" targetProject="./src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.smartcity.dao" targetProject="./src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
@@ -76,9 +76,22 @@
         <!--<table tableName="gs_r_service_role" domainObjectName="GSServiceRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="gs_access_types" domainObjectName="GSAccessType" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
 
-        <table tableName="zs_ogc_services" domainObjectName="ZsOgcServices" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <!--<table tableName="config_field_info" domainObjectName="ConfigFieldInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="config_field_meta_info" domainObjectName="ConfigFieldMetaInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
 
+        <!--<table tableName="config_layer_bound_info" domainObjectName="ConfigLayerBoundInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="config_layer_info" domainObjectName="ConfigLayerInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
-        <!-- geelynote mybatis插件的搭建 -->
+        <!--<table tableName="config_legend_info" domainObjectName="ConfigLegendInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="config_menu_info" domainObjectName="ConfigMenuInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+
+        <!--<table tableName="config_layer_resource_info" domainObjectName="ConfigLayerResourceInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="config_module_info" domainObjectName="ConfigModuleInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+
+        <!--<table tableName="config_statistics_info" domainObjectName="ConfigStatisticdInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="config_statistics_title_info" domainObjectName="ConfigStatisticsTitleInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+
+        <!--<table tableName="config_statistics_attribute_info" domainObjectName="ConfigStatisticsAttributeInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--&lt;!&ndash; geelynote mybatis插件的搭建 &ndash;&gt;-->
     </context>
 </generatorConfiguration>

@@ -1,10 +1,13 @@
 package com.shu.da.platform.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.shu.da.platform.kettle.JobManager;
 import com.shu.da.platform.kettle.KettleUtils;
 import com.shu.da.platform.quartz.QuartzManager;
 import lombok.extern.slf4j.Slf4j;
 import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.TransMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +41,29 @@ public class TestController {
 
         return status;
     }
+
+    /**
+     * 将ktr文件 保存进数据库
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/ktr")
+    public Object convertKtrToRes() throws Exception{
+
+        TransMeta transMeta = new TransMeta("D:/其他/ktrTest.ktr");
+
+        jobManager.ktrToRes(transMeta);
+
+        return "success";
+    }
+
+    @GetMapping("/trans/{transId}")
+    public Object startTrans(@PathVariable("transId") Long transId) throws Exception{
+            TransMeta transMeta = KettleUtils.loadTransMeta(transId);
+            return "";
+    }
+
+
 
     /**
      * 停止job

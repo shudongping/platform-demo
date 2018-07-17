@@ -24,6 +24,6 @@ public class KettleInitializing implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        KettleUtils.connectKettle("kettle","mysql","jdbc",ip,"kettle",port,username,password,null,"admin","admin");
+        KettleUtils.connectKettle("test","mysql","jdbc",ip,"kettle_res",port,username,password,null,"admin","admin");
     }
 }

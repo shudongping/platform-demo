@@ -12,4 +12,6 @@ public interface IUserService {
     void saveUser(PlatformUser user);
 
     PageInfo<PlatformUser> getPage(PageVo pageVo);
+
+    void sendUserEvent() throws Exception;
 }

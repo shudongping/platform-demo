@@ -5,7 +5,11 @@ import org.pentaho.di.core.logging.KettleLogStore;
 import org.pentaho.di.core.logging.LoggingBuffer;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.repository.LongObjectId;
+import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.TransMeta;
 import org.springframework.stereotype.Service;
 
 import java.util.Hashtable;
@@ -21,6 +25,20 @@ public class JobManager {
 
 
     private static Map<String,Job> jobMap = new Hashtable<String,Job>();
+
+    public Object ktrToRes(TransMeta transMeta) throws Exception{
+        transMeta.getRepositoryDirectory().setObjectId(new LongObjectId(0));
+        KettleUtils.saveTrans(transMeta);
+
+        return "success";
+    }
+
+
+    public Object excuteTrans(TransMeta transMeta) throws Exception{
+        Trans trans = new Trans(transMeta);
+        trans.execute(null);
+        return "success";
+    }
 
 
     public String startJob(Long jobId) throws Exception{

@@ -208,6 +208,11 @@ public class KettleUtils {
         return repository.loadJob(new LongObjectId(jobId), (String) null);
     }
 
+    public static TransMeta loadTransMeta(long transId) throws KettleException{
+        TransMeta transMeta = repository.loadTransformation(new LongObjectId(transId),"");
+        return transMeta;
+    }
+
     public static JobMeta loadJob(String jobId) throws KettleException {
         return repository.loadJob(new StringObjectId(jobId), (String) null);
     }

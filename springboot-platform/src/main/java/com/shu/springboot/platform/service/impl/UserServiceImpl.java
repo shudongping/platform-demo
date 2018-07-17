@@ -7,12 +7,15 @@ import com.github.pagehelper.page.PageParams;
 import com.shu.springboot.platform.dao.PlatformUserMapper;
 import com.shu.springboot.platform.domain.pojo.PlatformUser;
 import com.shu.springboot.platform.domain.vo.PageVo;
+import com.shu.springboot.platform.event.DemoEvent;
 import com.shu.springboot.platform.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author shudongping
@@ -23,6 +26,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private PlatformUserMapper userMapper;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -43,5 +49,19 @@ public class UserServiceImpl implements IUserService {
 
 
     }
+
+    @Override
+    public void sendUserEvent() throws Exception{
+
+        PlatformUser user = new PlatformUser();
+        user.setUsername("event");
+        user.setId(UUID.randomUUID().toString().replace("-",""));
+        applicationContext.publishEvent(new DemoEvent(this,user));
+
+    }
+
+
+
+
 
 }

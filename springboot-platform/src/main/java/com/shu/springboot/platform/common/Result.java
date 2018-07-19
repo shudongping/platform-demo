@@ -45,21 +45,4 @@ public class Result<T> {
     }
 
 
-    //生成随机数字和字母,
-    public static String getStringRandom(int length) {
-        String val = "";
-        Random random = new Random();
-        //参数length，表示生成几位随机数
-        for(int i = 0; i < length; i++) {
-                val += (char)(random.nextInt(26) + 97);
-        }
-        return val;
-    }
-
-    public static void  main(String[] args) {
-        String test = getStringRandom(6);
-        //测试
-        System.out.println(test);
-    }
-
 }

@@ -6,6 +6,7 @@ import com.shu.springboot.platform.domain.pojo.PlatformUser;
 import com.shu.springboot.platform.domain.vo.PageVo;
 import com.shu.springboot.platform.service.IUserService;
 import com.shu.springboot.platform.utils.RedisPoolUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +38,7 @@ public class UserController {
         return Result.success(user);
     }
 
-
+    @ApiOperation(value="获取redis中数据", notes="通过redis获取数据")
     @GetMapping
     public Result<String> getRedis(){
 

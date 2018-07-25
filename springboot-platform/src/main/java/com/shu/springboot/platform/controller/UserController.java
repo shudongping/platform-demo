@@ -5,8 +5,8 @@ import com.shu.springboot.platform.common.Result;
 import com.shu.springboot.platform.domain.pojo.PlatformUser;
 import com.shu.springboot.platform.domain.vo.PageVo;
 import com.shu.springboot.platform.service.IUserService;
+import com.shu.springboot.platform.utils.RedisPoolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +24,6 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @PostMapping
     public Result<PlatformUser> saveUser(PlatformUser user){
@@ -43,9 +41,7 @@ public class UserController {
     @GetMapping
     public Result<String> getRedis(){
 
-        redisTemplate.opsForValue().set("key1","key1");
-        redisTemplate.opsForValue().set("key2","key2");
-        String res = redisTemplate.opsForValue().get("key2").toString();
+        String res = RedisPoolUtil.get("key1");
 
         return Result.success(res);
 

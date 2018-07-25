@@ -20,9 +20,9 @@ public class RedisPool {
     private static Boolean testOnBorrow = Boolean.parseBoolean(PropertiesUtil.getProperty("redis.test.borrow", "true"));//在borrow一个jedis实例的时候，是否要进行验证操作，如果赋值true。则得到的jedis实例肯定是可以用的。
     private static Boolean testOnReturn = Boolean.parseBoolean(PropertiesUtil.getProperty("redis.test.return", "true"));//在return一个jedis实例的时候，是否要进行验证操作，如果赋值true。则放回jedispool的jedis实例肯定是可以用的。
 
-    private static String redisIp = PropertiesUtil.getProperty("redis.ip");
-    private static Integer redisPort = Integer.parseInt(PropertiesUtil.getProperty("redis.port"));
-
+    private static String redisIp = PropertiesUtil.getProperty("spring.redis.host");
+    private static Integer redisPort = Integer.parseInt(PropertiesUtil.getProperty("spring.redis.port"));
+    private static String password = PropertiesUtil.getProperty("spring.redis.password");
 
     private static void initPool() {
         JedisPoolConfig config = new JedisPoolConfig();
@@ -36,7 +36,7 @@ public class RedisPool {
 
         config.setBlockWhenExhausted(true);//连接耗尽的时候，是否阻塞，false会抛出异常，true阻塞直到超时。默认为true。
 
-        pool = new JedisPool(config, redisIp, redisPort, 1000 * 2);
+        pool = new JedisPool(config, redisIp, redisPort, 1000 * 2,password);
     }
 
     static {

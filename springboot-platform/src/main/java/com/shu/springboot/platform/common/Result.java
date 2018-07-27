@@ -1,12 +1,10 @@
 package com.shu.springboot.platform.common;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.Date;
 
 /**
  * @author shudongping
@@ -45,7 +43,8 @@ public class Result<T> {
     }
 
     public static void main(String args[]){
-        System.out.println(5%2);
+        Date date = new Date(Long.parseLong("1419696000000"));
+        System.out.println(Long.parseLong("123456"));
     }
 
 

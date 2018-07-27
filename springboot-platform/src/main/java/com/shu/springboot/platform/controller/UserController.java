@@ -5,6 +5,7 @@ import com.shu.springboot.platform.common.Result;
 import com.shu.springboot.platform.domain.pojo.PlatformUser;
 import com.shu.springboot.platform.domain.vo.PageVo;
 import com.shu.springboot.platform.service.IUserService;
+import com.shu.springboot.platform.utils.JWTUtil;
 import com.shu.springboot.platform.utils.RedisPoolUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping
-    public Result<PlatformUser> saveUser(PlatformUser user){
+    public Result<PlatformUser> saveUser(PlatformUser user) {
 
-        user.setId(UUID.randomUUID().toString().replace("-",""));
+        user.setId(UUID.randomUUID().toString().replace("-", ""));
         user.setAge(23);
         user.setMobile("12312312312");
         user.setUsername("test");
@@ -38,9 +39,9 @@ public class UserController {
         return Result.success(user);
     }
 
-    @ApiOperation(value="获取redis中数据", notes="通过redis获取数据")
+    @ApiOperation(value = "获取redis中数据", notes = "通过redis获取数据")
     @GetMapping
-    public Result<String> getRedis(){
+    public Result<String> getRedis() {
 
         String res = RedisPoolUtil.get("key1");
 
@@ -50,19 +51,26 @@ public class UserController {
 
 
     @GetMapping("/page")
-    public Result<PageInfo<PlatformUser>> getUserPage(PageVo pageVo){
+    public Result<PageInfo<PlatformUser>> getUserPage(PageVo pageVo) {
         return Result.success(userService.getPage(pageVo));
     }
 
     @GetMapping("/event/user")
-    public Result<String> eventTest() throws Exception{
+    public Result<String> eventTest() throws Exception {
         userService.sendUserEvent();
         return Result.success("ok");
     }
 
+    @PostMapping("/login")
+    public Result<String> login(String username) throws Exception {
 
-    public static void main(String[] args){
-        String s = String.format("step:%s","123");
+        return Result.success(JWTUtil.createToken(username));
+
+    }
+
+
+    public static void main(String[] args) {
+        String s = String.format("step:%s", "123");
         System.out.print(s);
     }
 

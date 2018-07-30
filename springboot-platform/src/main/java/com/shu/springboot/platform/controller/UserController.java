@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.shu.springboot.platform.common.Result;
 import com.shu.springboot.platform.domain.pojo.PlatformUser;
 import com.shu.springboot.platform.domain.vo.PageVo;
+import com.shu.springboot.platform.rabbitmq.MQSender;
 import com.shu.springboot.platform.service.IUserService;
 import com.shu.springboot.platform.utils.JWTUtil;
 import com.shu.springboot.platform.utils.RedisPoolUtil;
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private  MQSender sender;
 
     @PostMapping
     public Result<PlatformUser> saveUser(PlatformUser user) {
@@ -66,6 +70,12 @@ public class UserController {
 
         return Result.success(JWTUtil.createToken(username));
 
+    }
+
+    @GetMapping("/mq")
+    public Result<String> mqTest(String msg) throws Exception{
+        sender.sendMiaoshaMessage(msg);
+        return Result.success(msg);
     }
 
 

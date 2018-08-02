@@ -43,8 +43,8 @@ public class Result<T> {
     }
 
     public static void main(String args[]){
-        Date date = new Date(Long.parseLong("1419696000000"));
-        System.out.println(Long.parseLong("123456"));
+
+        System.out.println("sdfsdf".lastIndexOf('4'));
     }
 
 

@@ -24,6 +24,7 @@ public class MQConfig {
     public static final String QUEUE = "queue";
 
 
+
     /**
      * Direct模式 交换机Exchange
      */

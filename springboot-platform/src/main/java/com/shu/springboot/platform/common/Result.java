@@ -4,7 +4,10 @@ import lombok.Data;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author shudongping
@@ -43,8 +46,9 @@ public class Result<T> {
     }
 
     public static void main(String args[]){
+        Integer a = null;
 
-        System.out.println("sdfsdf".lastIndexOf('4'));
+        System.out.println();
     }
 
 

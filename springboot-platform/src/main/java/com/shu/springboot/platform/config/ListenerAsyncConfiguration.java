@@ -21,9 +21,9 @@ public class ListenerAsyncConfiguration implements AsyncConfigurer {
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         //设置线程池参数
-        taskExecutor.setCorePoolSize(5);
-        taskExecutor.setMaxPoolSize(10);
-        taskExecutor.setQueueCapacity(25);
+        taskExecutor.setCorePoolSize(50);
+        taskExecutor.setMaxPoolSize(100);
+        taskExecutor.setQueueCapacity(250);
         taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
         taskExecutor.initialize();
         return taskExecutor;

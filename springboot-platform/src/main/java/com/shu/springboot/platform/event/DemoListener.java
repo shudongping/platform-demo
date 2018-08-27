@@ -17,6 +17,11 @@ public class DemoListener implements ApplicationListener<DemoEvent> {
     @Override
     @Async
     public void onApplicationEvent(DemoEvent demoEvent) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         PlatformUser user = demoEvent.getUser();
         log.info("user姓名：{}",user.getUsername());
     }

@@ -31,6 +31,8 @@ public class UserController {
     @Autowired
     private  MQSender sender;
 
+    private static int countNum = 0;
+
     @PostMapping
     public Result<PlatformUser> saveUser(PlatformUser user) {
 
@@ -47,9 +49,21 @@ public class UserController {
     @GetMapping
     public Result<String> getRedis() {
 
-        String res = RedisPoolUtil.get("key1");
 
-        return Result.success(res);
+        int max = 50;
+        long count = RedisPoolUtil.incr("countKey");
+        if(count > max){
+
+        }else {
+            countNum++;
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        RedisPoolUtil.decr("countKey");
+        return Result.success(countNum + "");
 
     }
 

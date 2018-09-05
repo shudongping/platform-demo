@@ -95,5 +95,37 @@ public class RedisPoolUtil {
         return result;
     }
 
+    public static Long incr(String key){
+        Jedis jedis = null;
+        Long result = null;
+        try{
+            jedis = RedisPool.getJedis();
+            result = jedis.incr(key);
+        }catch (Exception e){
+            log.error("del key:{} error",key,e);
+            RedisPool.returnBrokenResource(jedis);
+            return result;
+        }
+        RedisPool.returnResource(jedis);
+        return result;
+    }
+
+    public static Long decr(String key){
+        Jedis jedis = null;
+        Long result = null;
+        try{
+            jedis = RedisPool.getJedis();
+            result = jedis.decr(key);
+        }catch (Exception e){
+            log.error("del key:{} error",key,e);
+            RedisPool.returnBrokenResource(jedis);
+            return result;
+        }
+        RedisPool.returnResource(jedis);
+        return result;
+    }
+
+
+
 
 }
